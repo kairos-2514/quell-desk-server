@@ -1,6 +1,6 @@
 import { Request,Response } from "express"
 
-export const loginUser = async (req:Request,res:Response) => {
+export const loginSuperAdmin = async (req:Request,res:Response) => {
     try {
         
     } catch (error) {
@@ -9,7 +9,7 @@ export const loginUser = async (req:Request,res:Response) => {
 }
 
 
-export const registerUser = async (req:Request,res:Response) => {
+export const registerSuperAdmin = async (req:Request,res:Response) => {
     try {
         
     } catch (error) {
@@ -17,7 +17,7 @@ export const registerUser = async (req:Request,res:Response) => {
     }
 }
 
-export const logoutUser = async (req:Request,res:Response) => {
+export const logoutSuperAdmin = async (req:Request,res:Response) => {
     try {
         
     } catch (error) {
@@ -25,7 +25,7 @@ export const logoutUser = async (req:Request,res:Response) => {
     }
 }
 
-export const me = async (req:Request,res:Response) => {
+export const meSuperAdmin = async (req:Request,res:Response) => {
     try {
         
     } catch (error) {
