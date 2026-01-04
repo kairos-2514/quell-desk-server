@@ -1,7 +1,7 @@
 import { Request,Response } from "express";
 
 
-export const addProfileData = async (req:Request,res:Response) => {
+export const addComplaint = async (req:Request,res:Response) => {
     try {
         
     } catch (error) {
@@ -12,7 +12,7 @@ export const addProfileData = async (req:Request,res:Response) => {
     }
 }
 
-export const editProfileData = async (req:Request,res:Response) => {
+export const editComplaint = async (req:Request,res:Response) => {
     try {
         
     } catch (error) {
@@ -23,3 +23,13 @@ export const editProfileData = async (req:Request,res:Response) => {
     }
 }
 
+export const getAllUserComplaints = async (req:Request,res:Response) => {
+    try {
+        
+    } catch (error) {
+        return res.status(500).json({
+            success:false,
+            message:(error as Error).message
+        })
+    }
+}
