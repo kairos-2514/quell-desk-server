@@ -8,7 +8,7 @@ export const newUserSchema = z.object({
     email:z.email(),
     password:passwordSchema,
     name:nameSchema,
-    phoneNumber:phoneNumberSchema
+    phoneNumber:phoneNumberSchema 
 })
 
 export const userLoginSchema = z.object({

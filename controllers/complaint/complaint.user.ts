@@ -1,5 +1,5 @@
 import { Request,Response } from "express";
-
+import s3 from "../../config/s3";
 
 export const addComplaint = async (req:Request,res:Response) => {
     try {

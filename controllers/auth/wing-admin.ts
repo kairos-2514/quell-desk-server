@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-export const loginSuperAdmin = async (req: Request, res: Response) => {
+export const loginWingAdmin = async (req: Request, res: Response) => {
   try {
   } catch (error) {
     return res.status(500).json({
@@ -10,7 +10,7 @@ export const loginSuperAdmin = async (req: Request, res: Response) => {
   }
 };
 
-export const registerSuperAdmin = async (req: Request, res: Response) => {
+export const registerWingAdmin = async (req: Request, res: Response) => {
   try {
   } catch (error) {
     return res.status(500).json({
