@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-export const loginWingAdmin = async (req: Request, res: Response) => {
+export const loginAdmin = async (req: Request, res: Response) => {
   try {
   } catch (error) {
     return res.status(500).json({
@@ -10,7 +10,7 @@ export const loginWingAdmin = async (req: Request, res: Response) => {
   }
 };
 
-export const registerWingAdmin = async (req: Request, res: Response) => {
+export const registerAdmin = async (req: Request, res: Response) => {
   try {
   } catch (error) {
     return res.status(500).json({
@@ -20,7 +20,7 @@ export const registerWingAdmin = async (req: Request, res: Response) => {
   }
 };
 
-export const logoutSuperAdmin = async (req: Request, res: Response) => {
+export const logoutAdmin = async (req: Request, res: Response) => {
   try {
   } catch (error) {
     return res.status(500).json({
@@ -30,7 +30,7 @@ export const logoutSuperAdmin = async (req: Request, res: Response) => {
   }
 };
 
-export const meSuperAdmin = async (req: Request, res: Response) => {
+export const me = async (req: Request, res: Response) => {
   try {
   } catch (error) {
     return res.status(500).json({

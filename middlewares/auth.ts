@@ -10,7 +10,7 @@ export const userAuth = async (req:Request,res:Response,next:NextFunction) => {
         })
     }
     try {
-        //analyze payload and set req.userId
+     
     } catch (error) {
         
     }
