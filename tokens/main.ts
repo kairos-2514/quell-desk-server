@@ -1,13 +1,16 @@
-import jwt from "jsonwebtoken"
+import jwt, { JwtPayload } from "jsonwebtoken"
 import bcrypt from "bcrypt"
 
-
+interface AuthPayload extends JwtPayload{
+    id:string
+}
 export const createToken = async (id:string) => {
     return jwt.sign(id as string,process.env.JWT_SECRET as string)
 }
 
-export const verifyToken = async (id:string) => {
-    return jwt.verify(id as string,process.env.JWT_SECRET as string)
+export const verifyToken =  (token:string):AuthPayload => {
+    const id =jwt.verify(token ,process.env.JWT_SECRET as string) as AuthPayload
+    return id
 }
 
 export const hashPassword = async (password:string) => {
