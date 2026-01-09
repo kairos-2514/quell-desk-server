@@ -4,7 +4,20 @@ import { HTTPError } from "../../utils/error";
 
 export const markAsResolved = async (req:Request,res:Response) => {
     try {
-        
+        const adminId = req.adminId
+        if(!adminId){
+            return res.status(HTTPError.UNAUTHORIZED).json({
+                success:false,
+                message:"Unauthorized"
+            })
+        }
+        const complaintId = req.body
+        if(!complaintId){
+            return res.status(HTTPError.BADREQUEST).json({
+                success:false,
+                message:"Bad request"
+            })
+        }
     } catch (error) {
         
     }
