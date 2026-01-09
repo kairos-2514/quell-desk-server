@@ -1,0 +1,7 @@
+export enum HTTPError{
+    NOTFOUND = 404,
+    BADREQUEST = 400,
+    SUCCESS=200,
+    UNAUTHORIZED = 401,
+    SERVERERROR = 500
+}
