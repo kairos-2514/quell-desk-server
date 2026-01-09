@@ -4,6 +4,7 @@ import { createToken, verifyPassword, hashPassword } from "../../tokens/main";
 import db from "../../db/db";
 import { PutCommand, GetCommand, UpdateCommand, QueryCommand } from "@aws-sdk/lib-dynamodb";
 import { v4 as uuidv4 } from "uuid";
+import { HTTPError } from "../../utils/error";
 
 const adminTable = process.env.ADMINS_TABLE_NAME || "admins";
 
@@ -25,7 +26,7 @@ export const registerAdmin = async (req: Request, res: Response) => {
     try {
         const validateData = newAdminSchema.safeParse(req.body);
         if (!validateData.success) {
-            return res.status(400).json({
+            return res.status(HTTPError.BADREQUEST).json({
                 success: false,
                 message: "Validation failed, bad request",
                 

@@ -3,7 +3,7 @@ import { HTTPError } from "../../utils/error";
 
 
 export const markAsResolved = async (req:Request,res:Response) => {
-    try {
+    try {  
         const adminId = req.adminId
         if(!adminId){
             return res.status(HTTPError.UNAUTHORIZED).json({
@@ -18,6 +18,8 @@ export const markAsResolved = async (req:Request,res:Response) => {
                 message:"Bad request"
             })
         }
+        //main db call
+        
     } catch (error) {
         
     }
