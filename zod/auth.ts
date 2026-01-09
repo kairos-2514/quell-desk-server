@@ -16,16 +16,12 @@ export const userLoginSchema = z.object({
     password:passwordSchema
 })
 
-export const newWingAdminSchema = z.object({
+export const newAdminSchema = z.object({
     email:z.string(),
     password:passwordSchema,
     name:nameSchema
 })
-export const wingAdminLoginSchema = z.object({
-    email:z.string(),
-    password:passwordSchema
-})
-export const superAdminLoginSchema = z.object({
+export const adminLoginSchema = z.object({
     email:z.string(),
     password:passwordSchema
 })

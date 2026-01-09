@@ -4,11 +4,11 @@ import { verifyToken } from "../tokens/main";
 declare global{
     namespace Express{
         interface Request{
-            userId?:string
+            userId?:string,
+            adminId?:string
         }
     }
 }
-
 export const userAuth = async (req:Request,res:Response,next:NextFunction) => {
     const token = req.cookies.an_token
      if(!token){
