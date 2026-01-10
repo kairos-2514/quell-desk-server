@@ -1,12 +1,5 @@
- 
 import multer from "multer"
-
-
-const storage = multer.diskStorage({
-    filename:function(req,file,callback){
-        callback(null,file.originalname)
-    }
-})
+import storage from "../config/multer"
 
 const upload = multer({
     storage

@@ -1,7 +1,16 @@
 import express, { Request,Response,NextFunction } from "express"; 
+import { loginAdmin, logout, me, registerAdmin } from "../../controllers/auth/admin";
 
 
-const admin  = express.Router()
+const adminAuth  = express.Router()
 
 
-export default admin 
+adminAuth.post("/login",loginAdmin)
+
+adminAuth.post("/register",registerAdmin)
+
+adminAuth.get("/me",me)
+
+adminAuth.post("/logout",logout)
+
+export default adminAuth
