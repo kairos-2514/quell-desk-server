@@ -8,11 +8,11 @@ import { v4 as uuidv4 } from "uuid";
 const USERS_TABLE = process.env.USERS_TABLE_NAME || "users";
 
  
-const getUserByEmail = async (email: string) => {
+const getUserByEmail = async (phoneNumber: string) => {
     try {
         const command = new GetCommand({
             TableName: USERS_TABLE,
-            Key: { email }
+            Key: { phoneNumber }
         });
         const result = await db.send(command);
         return result.Item;
@@ -35,11 +35,11 @@ export const registerUser = async (req: Request, res: Response) => {
         const { email, name, phoneNumber, password } = validateData.data;
 
       
-        const existingUser = await getUserByEmail(email);
+        const existingUser = await getUserByEmail(phoneNumber);
         if (existingUser) {
             return res.status(409).json({
                 success: false,
-                message: "User with this email already exists"
+                message: "User with this phoneNumber already exists"
             });
         }
 
@@ -47,17 +47,17 @@ export const registerUser = async (req: Request, res: Response) => {
         const passwordHash = await hashPassword(password);
 
         const newUser = {
-            _id: uuidv4(),
+            id: uuidv4(),
             name,
             email,
             phoneNumber,
             passwordHash,
-            status: "verification_pending",
+            status: false,
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString()
         };
-
-        
+    
+        console.log(newUser)
         const command = new PutCommand({
             TableName: USERS_TABLE,
             Item: newUser,
@@ -65,7 +65,7 @@ export const registerUser = async (req: Request, res: Response) => {
         });
 
         await db.send(command);
-        const token = createToken(newUser._id)
+        const token = createToken(newUser.id)
          
         res.cookie("auth_token", token, {
             httpOnly: true,
@@ -78,7 +78,7 @@ export const registerUser = async (req: Request, res: Response) => {
             success: true,
             message: "User registered successfully",
             user: {
-                _id: newUser._id,
+                id: newUser.id,
                 name: newUser.name,
                 email: newUser.email,
                 phoneNumber: newUser.phoneNumber,
@@ -135,7 +135,7 @@ export const loginUser = async (req: Request, res: Response) => {
         });
         await db.send(updateCommand);
  
-        const token = createToken(user._id);
+        const token = createToken(user.id);
  
         res.cookie("auth_token", token, {
             httpOnly: true,
@@ -148,7 +148,7 @@ export const loginUser = async (req: Request, res: Response) => {
             success: true,
             message: "Login successful",
             user: {
-                _id: user._id,
+                id: user.id,
                 name: user.name,
                 email: user.email,
                 phoneNumber: user.phoneNumber,
@@ -205,7 +205,7 @@ export const me = async (req: Request, res: Response) => {
         const command = new QueryCommand({
             TableName: USERS_TABLE,
             IndexName: "UserIdIndex", // GSI name
-            KeyConditionExpression: "_id = :userId",
+            KeyConditionExpression: "id = :userId",
             ExpressionAttributeValues: {
                 ":userId": userId
             }
@@ -224,7 +224,7 @@ export const me = async (req: Request, res: Response) => {
         return res.status(200).json({
             success: true,
             user: {
-                _id: user._id,
+                id: user.id,
                 name: user.name,
                 email: user.email,
                 phoneNumber: user.phoneNumber,
